@@ -35,10 +35,19 @@ function getRndInteger(min, max) {
    }
 
 Employees.prototype.randomSalary = function (min,max){
-    this.Salary= getRndInteger(min ,max);
+    let i = getRndInteger(min ,max);
+    this.Salary=calTax(i);
 
 
 }
+
+function calTax(num){ 
+  let x=num+(num*((7.5)/100));
+  return x ;
+}
+
+
+
 Employees.prototype.render = function(){
     
     document.write(`<p> EmployeeID = ${this.EmployeeID}</p>`)
@@ -62,6 +71,3 @@ for(let i=0 ;i<allEmployees.length;i++){
     
 allEmployees[i].render();
 }
-
-
-
