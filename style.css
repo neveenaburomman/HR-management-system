@@ -71,6 +71,8 @@ h1{
    background: #125688;
    color: white;
  }
- 
- 
+ #employeeInformation{
+  -ms-flex: 1;  /* IE 10 */  
+  flex: 1;
+ }
  

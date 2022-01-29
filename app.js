@@ -4,7 +4,8 @@
 let allEmployees= [];
 
 let form=document.getElementById("the form");
-
+let information = document.getElementById("employeeInformation");
+let imageDiv2 =document.getElementById("imageDiv");
 function Employees(EmployeeID,Fullname,Department,Level,img)
 {
 this.EmployeeID=EmployeeID;
@@ -44,24 +45,45 @@ function calTax(num){
   let x=num+(num*((7.5)/100));
   return x ;
 }
-document.write("<h3> Employees information</h3>")
+
 
 Employees.prototype.render = function(){
+  
+    let theId = document.createElement('h4');
+    theId.textContent = this.EmployeeID;
+    information.appendChild(theId);
+
+    let name = document.createElement('h4');
+    name.textContent = this.Fullname;
+    information.appendChild(name);
+
+    let lev = document.createElement('h4');
+    lev.textContent = this.Level;
+    information.appendChild(lev);
     
-    document.write(`<p> EmployeeID = ${this.EmployeeID} ,Employee Name= ${this.Fullname},Employee Level = ${this.Level} ,Employee Salary = ${this.Salary}  ${this.image
-    }</p>`)
+    let dep = document.createElement('h4');
+    dep.textContent = this.Department;
+    information.appendChild(dep);
+
+    let sal = document.createElement('h4');
+    sal.textContent = this.Salary;
+    information.appendChild(sal);
 
     let image = document.createElement('img'); 
     image.setAttribute("src", this.image);
-    imageDiv.appendChild(image);
+    imageDiv2.appendChild(image);
+    image.style.width = "70px"
+    image.style.imageRendering;
+
 }
+
 
 const val = Math.floor(1000 + Math.random() * 9000);
 console.log(val);
 
 
-
 for(let i=0 ;i<allEmployees.length;i++){
+  
     if (this.level == "senior") {
      allEmployees[i].randomSalary(1500,2000);
 
@@ -72,7 +94,7 @@ for(let i=0 ;i<allEmployees.length;i++){
         allEmployees[i].randomSalary(500,1000);
       }
 
-      document.write(`<h4> Employee number  ${i+1}</h4>`)
+      
 allEmployees[i].render();
 
 }
