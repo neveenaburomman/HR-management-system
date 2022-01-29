@@ -23,12 +23,15 @@
       </ul>
 
     </div>
-    <h2>Employees information</h2>
-    <br>
+
+    <div id="imageDiv"></div>
+    <h3>To add an Employee</h3>
+  
 
     
   <form id="the form">
-    Fullname: <input type="text" name="fname">
+    <label for="fullName">fullName; </label>
+    <input id="fullName" type="text" name="fullName" required>
    <br><br>
   <label for="Department">Department:</label>
   <select id="Department" name="Department">
@@ -47,19 +50,23 @@
     
   </select>
   
-  <br><br>
+
   <label for="images">Images: </label>
   <input id="images" type="text" name="images">
-  <br><br>
   
-  <input type="submit">
+  
+  <input type="submit"  value="add an Employee">
+  
 </form>
+
+
     <script src="app.js"></script>
+    
+
     <div class="footer">
         <a href="#" class="fa fa-linkedin"></a>
         <a href="#" class="fa fa-facebook"></a>
         <a href="#" class="fa fa-instagram"></a>
         <p>&copy; 2022 ASAC All rights reserved </p>
-      </div>
 </body>
 </html>
