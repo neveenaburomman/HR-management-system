@@ -75,4 +75,15 @@ h1{
   -ms-flex: 1;  /* IE 10 */  
   flex: 1;
  }
- 
+ .container {
+  max-width: 2000px;
+  margin: 0 auto;
+  display: flex;
+}
+.The form {
+  height: 420px;
+  width: 30%;
+  padding: 50px;
+  background: #73AFBA;
+  border-radius: 10%;
+}
