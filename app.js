@@ -34,9 +34,14 @@ function getRndInteger(min, max) {
    }
 
 Employees.prototype.randomSalary = function (min,max){
+
   this.Salary= getRndInteger(min ,max);
   let i = getRndInteger(min ,max);
   this.Salary=calTax(i);
+=======
+    let i = getRndInteger(min ,max);
+    this.Salary=calTax(i);
+
 
 
 }
@@ -46,6 +51,9 @@ function calTax(num){
   return x ;
 }
 
+
+
+=======
 
 Employees.prototype.render = function(){
   
@@ -98,6 +106,7 @@ for(let i=0 ;i<allEmployees.length;i++){
 allEmployees[i].render();
 
 }
+
 form.addEventListener("submit",afterSubmit)
 
 
@@ -116,3 +125,4 @@ let newEmployee =new Employees(val, name , department , level,EmployeeImage );
 console.log(newEmployee);
 newEmployee.render();
 }
+=======
