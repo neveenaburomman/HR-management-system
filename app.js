@@ -61,15 +61,27 @@ Employees.prototype.render = function(){
 }
 
 Employees.prototype.randomSalary = function (min,max){
+
   this.Salary= getRndInteger(min ,max);
   let i = getRndInteger(min ,max);
   this.Salary=calTax(i);
+=======
+    let i = getRndInteger(min ,max);
+    this.Salary=calTax(i);
+
 
 }
 
 
+
 function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
+=======
+
+=======
+
+Employees.prototype.render = function(){
+  
   
    }
 
@@ -119,6 +131,11 @@ function renderAll() {
       saveToLocalStorage()
 }
 
+=======
+
+form.addEventListener("submit",afterSubmit)
+
+
 
 
 form.addEventListener("submit",afterSubmit)
@@ -159,4 +176,8 @@ function getData(){
   renderAll();
 }
 
+
 getData();
+=======
+=======
+
