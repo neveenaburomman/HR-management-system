@@ -2,7 +2,7 @@
 
 
 
-Employees.allEmployees = [];
+let allEmployees = [];
 
 let form=document.getElementById("the form");
 
