@@ -4,8 +4,10 @@
 let allEmployees= [];
 
 let form=document.getElementById("the form");
-let information = document.getElementById("employeeInformation");
-let imageDiv2 =document.getElementById("imageDiv");
+let information = document.getElementById("card");
+
+
+
 function Employees(EmployeeID,Fullname,Department,Level,img)
 {
 this.EmployeeID=EmployeeID;
@@ -19,88 +21,118 @@ allEmployees.push(this);
 }
 
 
-let Ghazi  = new Employees("1000", "Ghazi Samer" , "administration" , "senior" ,"./images/1000.png");
-let Lana  = new Employees("1001", "Lana Ali" , "finance" , "senior" ,"./images/1001.png");
-let Tamara  = new Employees("1002", "Tamara Ayoub" , "marketing" , "senior","./images/1002.png" );
-let Safi   =  new Employees("1003", "Safi Walid" , "administration" , "mid-senior","./images/1003.png" );
-let Omar   = new Employees("1004", "Omar Zaid" , "development" , "senior","./images/1004.png" );
-let Rana  = new Employees("1005", "Rana Saleh" , "development" ,"junior" ,"./images/1005.png" );
-let Hadi  = new Employees("1006", "Hadi Ahmad" , "finance" , "senior","./images/1006.png" );
+let Ghazi  = new Employees("1000", "Ghazi Samer" , "administration" , "senior" ,"./assets/Ghazi.jpg");
+let Lana  = new Employees("1001", "Lana Ali" , "finance" , "senior" ,"./assets/Lana.jpg");
+let Tamara  = new Employees("1002", "Tamara Ayoub" , "marketing" , "senior","./assets/Tamara.jpg" );
+let Safi   =  new Employees("1003", "Safi Walid" , "administration" , "mid-senior","./assets/Safi.jpg" );
+let Omar   = new Employees("1004", "Omar Zaid" , "development" , "senior","./assets/Omar.jpg" );
+let Rana  = new Employees("1005", "Rana Saleh" , "development" ,"junior" ,"./assets/Rana.jpg" );
+let Hadi  = new Employees("1006", "Hadi Ahmad" , "finance" , "senior","./assets/Hadi.jpg" );
 
 
-function getRndInteger(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) ) + min;
+
+//for the salary/////////////////////////////////////// 
+
+
+
+
+Employees.prototype.theSalary = function (){
+
+  if (this.level == "senior") {  
+  let i= Math.floor(Math.random() * (2000 - 1500 + 1) ) + 1500;//randomsalary
+  let afterTax = i+(i*((7.5)/100));;//tax
+  return this.Salary=afterTax;
+
+ }
+
+ else if (this.level == "mid-senior"){
+  let i= Math.floor(Math.random() * (1500 - 1000 + 1) ) + 1000;//randomsalary
+  let afterTax = i+(i*((7.5)/100));;//tax
+  return this.Salary=afterTax;
   
-   }
+ }
 
-Employees.prototype.randomSalary = function (min,max){
-  this.Salary= getRndInteger(min ,max);
-  let i = getRndInteger(min ,max);
-  this.Salary=calTax(i);
+ else {
 
-
-}
-
-function calTax(num){ 
-  let x=num+(num*((7.5)/100));
-  return x ;
-}
+  let i= Math.floor(Math.random() * (1000 - 500 + 1) ) + 500;//randomsalary
+  let afterTax = i+(i*((7.5)/100));;//tax
+  return this.Salary=afterTax;
+ 
+}}
 
 
+
+////////////////////////////////////////////////////////////
+
+
+
+ 
 Employees.prototype.render = function(){
+
+let sepEmp =document.createElement("div");
+sepEmp.style.background="pink";
+sepEmp.style.textAlign="center";
+sepEmp.style.margin="20px";
+sepEmp.style.width="200px";
+
+ information.appendChild(sepEmp);
+
+  let image = document.createElement('img'); 
+    image.setAttribute("src", this.image);
+    image.style.width = "70px"
+    image.style.imageRendering;
+    sepEmp.appendChild(image);
+
+
   
     let theId = document.createElement('h4');
     theId.textContent = this.EmployeeID;
-    information.appendChild(theId);
+    sepEmp.appendChild(theId);
+   
+
 
     let name = document.createElement('h4');
     name.textContent = this.Fullname;
-    information.appendChild(name);
+    sepEmp.appendChild(name);
 
     let lev = document.createElement('h4');
     lev.textContent = this.Level;
-    information.appendChild(lev);
+    sepEmp.appendChild(lev);
     
     let dep = document.createElement('h4');
     dep.textContent = this.Department;
-    information.appendChild(dep);
+    sepEmp.appendChild(dep);
 
     let sal = document.createElement('h4');
-    sal.textContent = this.Salary;
-    information.appendChild(sal);
+    sal.textContent = this.theSalary();
+    sepEmp.appendChild(sal);
 
-    let image = document.createElement('img'); 
-    image.setAttribute("src", this.image);
-    imageDiv2.appendChild(image);
-    image.style.width = "70px"
-    image.style.imageRendering;
+    
 
 }
 
+
+
+
+function renderAll(){
+
+for(let i=0; i< allEmployees.length ;i++){
+
+  allEmployees[i].render();
+}
+}
+
+
+
+
+
+
+///////////events
+
+form.addEventListener("submit",afterSubmit)
 
 const val = Math.floor(1000 + Math.random() * 9000);
 console.log(val);
-
-
-for(let i=0 ;i<allEmployees.length;i++){
-  
-    if (this.level == "senior") {
-     allEmployees[i].randomSalary(1500,2000);
-
-      } else if (this.level == "mid-senior")
-       {
-         allEmployees[i].randomSalary(1000,1500);
-      } else {
-        allEmployees[i].randomSalary(500,1000);
-      }
-
-      
-allEmployees[i].render();
-
-}
-form.addEventListener("submit",afterSubmit)
-
-
 
 function afterSubmit(event){
   event.preventDefault();
@@ -108,11 +140,13 @@ function afterSubmit(event){
 let name =event.target.fullName.value;
 let department =event.target.Department.value;
 let level =event.target.Level.value;
-let EmployeeImage=event.target.images;
+let images=event.target.images.value;
 console.log(name);
 console.log(department);
 
-let newEmployee =new Employees(val, name , department , level,EmployeeImage );
+let newEmployee =new Employees(val, name , department , level,images );
 console.log(newEmployee);
 newEmployee.render();
 }
+
+renderAll();
