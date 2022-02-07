@@ -1,10 +1,13 @@
 'use strict';
 
 
-let allEmployees= [];
+
+Employees.allEmployees = [];
 
 let form=document.getElementById("the form");
+
 let information = document.getElementById("card");
+
 
 
 
@@ -19,6 +22,7 @@ this.image= img;
 
 allEmployees.push(this);
 }
+
 
 
 let Ghazi  = new Employees("1000", "Ghazi Samer" , "administration" , "senior" ,"./assets/Ghazi.jpg");
@@ -43,7 +47,9 @@ Employees.prototype.theSalary = function (){
   let afterTax = i+(i*((7.5)/100));;//tax
   return this.Salary=afterTax;
 
+
  }
+
 
  else if (this.level == "mid-senior"){
   let i= Math.floor(Math.random() * (1500 - 1000 + 1) ) + 1000;//randomsalary
@@ -62,11 +68,15 @@ Employees.prototype.theSalary = function (){
 
 
 
+
 ////////////////////////////////////////////////////////////
 
 
 
  
+
+
+
 Employees.prototype.render = function(){
 
 let sepEmp =document.createElement("div");
@@ -85,6 +95,7 @@ sepEmp.style.width="200px";
 
 
   
+
     let theId = document.createElement('h4');
     theId.textContent = this.EmployeeID;
     sepEmp.appendChild(theId);
@@ -109,7 +120,15 @@ sepEmp.style.width="200px";
 
     
 
-}
+  
+   }
+
+
+
+
+  
+
+
 
 
 
@@ -127,12 +146,24 @@ for(let i=0; i< allEmployees.length ;i++){
 
 
 
+
+
+
+
+form.addEventListener("submit",afterSubmit)
+
+
+
+
+
 ///////////events
 
 form.addEventListener("submit",afterSubmit)
 
 const val = Math.floor(1000 + Math.random() * 9000);
 console.log(val);
+
+
 
 function afterSubmit(event){
   event.preventDefault();
@@ -146,7 +177,10 @@ console.log(department);
 
 let newEmployee =new Employees(val, name , department , level,images );
 console.log(newEmployee);
+
 newEmployee.render();
+
 }
 
 renderAll();
+
