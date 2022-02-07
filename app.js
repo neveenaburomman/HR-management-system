@@ -150,7 +150,6 @@ for(let i=0; i< allEmployees.length ;i++){
 
 
 
-form.addEventListener("submit",afterSubmit)
 
 
 
