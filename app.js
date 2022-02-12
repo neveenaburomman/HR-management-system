@@ -2,7 +2,7 @@
 
 
 
-Employees.allEmployees = [];
+let allEmployees = [];
 
 let form=document.getElementById("the form");
 
@@ -11,14 +11,14 @@ let information = document.getElementById("card");
 
 
 
-function Employees(EmployeeID,Fullname,Department,Level,img)
+function Employees(EmployeeID,Fullname,Department,Level,image)
 {
 this.EmployeeID=EmployeeID;
 this.Fullname=Fullname;
 this.Department=Department;
 this.Level=Level;
 this.Salary=0;
-this.image= img;
+this.image= image;
 
 allEmployees.push(this);
 }
@@ -73,10 +73,6 @@ Employees.prototype.theSalary = function (){
 
 
 
- 
-
-
-
 Employees.prototype.render = function(){
 
 let sepEmp =document.createElement("div");
@@ -126,12 +122,6 @@ sepEmp.style.width="200px";
 
 
 
-  
-
-
-
-
-
 
 function renderAll(){
 
@@ -149,13 +139,6 @@ for(let i=0; i< allEmployees.length ;i++){
 
 
 
-
-form.addEventListener("submit",afterSubmit)
-
-
-
-
-
 ///////////events
 
 form.addEventListener("submit",afterSubmit)
@@ -166,21 +149,47 @@ console.log(val);
 
 
 function afterSubmit(event){
-  event.preventDefault();
+
+event.preventDefault();
 
 let name =event.target.fullName.value;
 let department =event.target.Department.value;
 let level =event.target.Level.value;
 let images=event.target.images.value;
-console.log(name);
-console.log(department);
 
-let newEmployee =new Employees(val, name , department , level,images );
+let newEmployee =new Employees(val, name , department ,level,images);
 console.log(newEmployee);
 
 newEmployee.render();
 
+saveToLocalStorage();
+
 }
 
+
+function saveToLocalStorage () {
+  let stringTheData = JSON.stringify(allEmployees)
+  localStorage.setItem("Employees" , stringTheData);
+
+}
+
+
+function getTheData (){
+  let strData = localStorage.getItem("Employees");
+  let parsedData= JSON.parse(strData);
+  if(parsedData !=null){
+
+    allEmployees = [];
+
+  for (let i=0 ; i<parsedData.length ; i++){
+    new Employees(parsedData[i].Fullname, parsedData[i].Department, parsedData[i].Level, parsedData[i].image);
+
+  }
+}
 renderAll();
 
+}
+
+
+
+getTheData();
